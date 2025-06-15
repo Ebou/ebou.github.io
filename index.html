@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaki Boss Menu - Exports Dokumentation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            color: #64748b;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .sidebar a:hover {
+            background: #f1f5f9;
+            color: #667eea;
+            transform: translateX(4px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section h2 {
+            color: #1e293b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #334155;
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            background: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-left: 4px solid #667eea;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .section h4 {
+            color: #475569;
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .function-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .function-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .function-description {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .params-table th {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .params-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .params-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .params-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #d4d4d4;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+
+        .example-block {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .example-block h5 {
+            color: #0369a1;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+
+        .badge.optional {
+            background: #64748b;
+        }
+
+        .badge.returns {
+            background: #059669;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+        }
+
+        .warning {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning h5 {
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info h5 {
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-code"></i> Zaki Boss Menu</h1>
+            <p>Komplet Exports Dokumentation for FiveM</p>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <nav class="sidebar">
+            <input type="text" class="search-box" placeholder="Søg i dokumentation..." id="searchBox">
+            <h3><i class="fas fa-list"></i> Indholdsfortegnelse</h3>
+            <ul id="tableOfContents">
+                <li><a href="#overview">Oversigt</a></li>
+                <li><a href="#transactions">Transaktionsstyring</a></li>
+                <li><a href="#employees">Medarbejderstyring</a></li>
+                <li><a href="#billing">Faktureringssystem</a></li>
+                <li><a href="#budget">Budgetstyring</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#settings">Indstillingsstyring</a></li>
+                <li><a href="#discord">Discord Integration</a></li>
+                <li><a href="#zones">Zone Styring</a></li>
+                <li><a href="#metrics">Medarbejder Metrics</a></li>
+                <li><a href="#reports">Rapport Generering</a></li>
+                <li><a href="#helpers">Hjælpefunktioner</a></li>
+                <li><a href="#examples">Brug Eksempler</a></li>
+                <li><a href="#error-handling">Fejlhåndtering</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="overview" class="section">
+                <h2>Oversigt</h2>
+                <p>Denne dokumentation giver en komplet oversigt over alle tilgængelige exports i Zaki Boss Menu systemet. Disse exports gør det muligt for andre scripts at integrere problemfrit med boss menu funktionaliteten.</p>
+                
+                <div class="info">
+                    <h5><i class="fas fa-info-circle"></i> Vigtig Information</h5>
+                    <p>Alle exports er designet til at arbejde med ESX framework og kræver korrekt opsætning af virksomheder (societies) i din database.</p>
+                </div>
+            </section>
+
+            <section id="transactions" class="section">
+                <h2><i class="fas fa-exchange-alt"></i> Transaktionsstyring</h2>
+                
+                <div class="function-block">
+                    <div class="function-title">addTransaction</div>
+                    <div class="function-description">Tilføjer en transaktion til en virksomheds transaktionshistorik.</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:addTransaction(society, amount, type, note, source, target, category, description)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn (f.eks. 'police', 'ambulance')</td>
+                            </tr>
+                            <tr>
+                                <td><code>amount</code></td>
+                                <td><span class="badge">number</span></td>
+                                <td>Transaktionsbeløb (positivt for indkomst, negativt for udgifter)</td>
+                            </tr>
+                            <tr>
+                                <td><code>type</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Transaktionstype ('deposit', 'withdraw', 'bonus', osv.)</td>
+                            </tr>
+                            <tr>
+                                <td><code>note</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Kort transaktionsnotat</td>
+                            </tr>
+                            <tr>
+                                <td><code>source</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Kilde identifier (valgfri)</td>
+                            </tr>
+                            <tr>
+                                <td><code>target</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Mål identifier (valgfri)</td>
+                            </tr>
+                            <tr>
+                                <td><code>category</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Transaktionskategori (valgfri)</td>
+                            </tr>
+                            <tr>
+                                <td><code>description</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Detaljeret beskrivelse (valgfri)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">boolean</span> - Success status</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Tilføj penge fra narkosag til politiet
+local success = exports['zaki-bossmenu']:addTransaction('police', 50000, 'deposit', 'Narkosag penge', nil, nil, 'Operationer', 'Penge beslaglagt fra narkosag')</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-block">
+                    <div class="function-title">getTransactions</div>
+                    <div class="function-description">Henter transaktionshistorik for en virksomhed.</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:getTransactions(society, limit, category)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn</td>
+                            </tr>
+                            <tr>
+                                <td><code>limit</code></td>
+                                <td><span class="badge optional">number</span></td>
+                                <td>Maksimalt antal transaktioner (standard: 50)</td>
+                            </tr>
+                            <tr>
+                                <td><code>category</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Filtrer efter kategori</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">table</span> - Array af transaktionsobjekter</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Hent de sidste 20 operationstransaktioner for politiet
+local transactions = exports['zaki-bossmenu']:getTransactions('police', 20, 'Operationer')
+for _, trans in pairs(transactions) do
+    print(trans.note .. ': ' .. trans.amount .. ' kr')
+end</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-block">
+                    <div class="function-title">getSocietyBalance</div>
+                    <div class="function-description">Får den nuværende saldo for en virksomhed.</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:getSocietyBalance(society)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">number</span> - Nuværende saldo</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Check politiets saldo
+local balance = exports['zaki-bossmenu']:getSocietyBalance('police')
+print('Politiet har ' .. balance .. ' kr på kontoen')</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="employees" class="section">
+                <h2><i class="fas fa-users"></i> Medarbejderstyring</h2>
+                
+                <div class="function-block">
+                    <div class="function-title">getSocietyEmployees</div>
+                    <div class="function-description">Får alle medarbejdere i en virksomhed (online og offline).</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:getSocietyEmployees(society)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">table</span> - Array af medarbejderobjekter</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Få alle politimedarbejdere
+local employees = exports['zaki-bossmenu']:getSocietyEmployees('police')
+for _, employee in pairs(employees) do
+    local status = employee.online and 'Online' or 'Offline'
+    print(employee.name .. ' - ' .. employee.job.grade_label .. ' (' .. status .. ')')
+end</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-block">
+                    <div class="function-title">hirePlayerToSociety</div>
+                    <div class="function-description">Ansætter en spiller i en virksomhed.</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:hirePlayerToSociety(playerId, society, grade)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>playerId</code></td>
+                                <td><span class="badge">number</span></td>
+                                <td>Spiller server ID</td>
+                            </tr>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn</td>
+                            </tr>
+                            <tr>
+                                <td><code>grade</code></td>
+                                <td><span class="badge optional">number</span></td>
+                                <td>Startgrad (standard: 0)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">boolean</span> - Success status</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Ansæt spiller som politirekrut
+local success = exports['zaki-bossmenu']:hirePlayerToSociety(1, 'police', 0)
+if success then
+    print('Spiller ansat som politirekrut!')
+end</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="billing" class="section">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Faktureringssystem</h2>
+                
+                <div class="function-block">
+                    <div class="function-title">createBillForPlayer</div>
+                    <div class="function-description">Opretter en regning til en spiller fra en virksomhed.</div>
+                    
+                    <h4>Syntax:</h4>
+                    <div class="code-block">
+                        <code>exports['zaki-bossmenu']:createBillForPlayer(society, playerIdentifier, label, amount, dueDate)</code>
+                    </div>
+
+                    <h4>Parametre:</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>society</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Virksomhedsnavn</td>
+                            </tr>
+                            <tr>
+                                <td><code>playerIdentifier</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Spiller identifier</td>
+                            </tr>
+                            <tr>
+                                <td><code>label</code></td>
+                                <td><span class="badge">string</span></td>
+                                <td>Regningsbeskrivelse</td>
+                            </tr>
+                            <tr>
+                                <td><code>amount</code></td>
+                                <td><span class="badge">number</span></td>
+                                <td>Regningsbeløb</td>
+                            </tr>
+                            <tr>
+                                <td><code>dueDate</code></td>
+                                <td><span class="badge optional">string</span></td>
+                                <td>Forfaldsdato (YYYY-MM-DD format)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Returnerer:</h4>
+                    <p><span class="badge returns">boolean</span> - Success status</p>
+
+                    <div class="example-block">
+                        <h5>Eksempel:</h5>
+                        <div class="code-block">
+                            <code>-- Opret fartbøde
+local success = exports['zaki-bossmenu']:createBillForPlayer('police', 'char1:110000103304f2b', 'Fartbøde - 120 km/t i 50 zone', 2500, '2024-01-15')
+if success then
+    print('Fartbøde oprettet!')
+end</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="examples" class="section">
+                <h2><i class="fas fa-code"></i> Brug Eksempler</h2>
+                
+                <h3>Eksempel 1: Narkobust Integration</h3>
+                <div class="code-block">
+                    <code>-- I dit narkoscript
+RegisterServerEvent('drugs:bustComplete')
+AddEventHandler('drugs:bustComplete', function(amount, location)
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    
+    if xPlayer.job.name == 'police' then
+        -- Tilføj penge til politiet
+        exports['zaki-bossmenu']:depositToSociety('police', amount, 'Narkobust beslaglæggelse', 'Operationer', 'Penge beslaglagt fra narkobust på ' .. location)
+        
+        -- Log til Discord
+        exports['zaki-bossmenu']:sendDiscordLog('police', 'Narkobust Gennemført', 'Betjent ' .. xPlayer.getName() .. ' gennemførte en narkobust', 65280, {
+            {["name"] = "Beløb Beslaglagt", ["value"] = amount .. " kr", ["inline"] = true},
+            {["name"] = "Betjent", ["value"] = xPlayer.getName(), ["inline"] = true},
+            {["name"] = "Lokation", ["value"] = location, ["inline"] = true}
+        })
+        
+        -- Tilføj præstationsmetrik
+        exports['zaki-bossmenu']:addEmployeeMetric('police', xPlayer.identifier, 'drug_busts', 1, os.date('%Y-%m-%d'), os.date('%Y-%m-%d'), 'Narkobust gennemført på ' .. location)
+    end
+end)</code>
+                </div>
+
+                <h3>Eksempel 2: Mekaniker Job Integration</h3>
+                <div class="code-block">
+                    <code>-- I dit mekanikscript
+RegisterServerEvent('mechanic:repairComplete')
+AddEventHandler('mechanic:repairComplete', function(price, vehicleModel)
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    
+    if xPlayer.job.name == 'mechanic' then
+        -- Tilføj kommission til mekanikeren
+        local commission = math.floor(price * 0.35) -- 35% kommission
+        exports['zaki-bossmenu']:depositToSociety('mechanic', commission, 'Reparationskommission', 'Service', 'Kommission fra ' .. vehicleModel .. ' reparation')
+        
+        -- Tilføj præstationsmetrik
+        exports['zaki-bossmenu']:addEmployeeMetric('mechanic', xPlayer.identifier, 'repairs_completed', 1, os.date('%Y-%m-%d'), os.date('%Y-%m-%d'), vehicleModel .. ' reparation gennemført')
+    end
+end)</code>
+                </div>
+            </section>
+
+            <section id="error-handling" class="section">
+                <h2><i class="fas fa-exclamation-triangle"></i> Fejlhåndtering</h2>
+                
+                <div class="warning">
+                    <h5><i class="fas fa-exclamation-triangle"></i> Vigtig Note</h5>
+                    <p>Alle exports inkluderer grundlæggende fejlhåndtering og vil returnere <code>false</code> eller tomme tabeller ved fejl. Tjek altid returværdier:</p>
+                </div>
+
+                <div class="code-block">
+                    <code>local success = exports['zaki-bossmenu']:addTransaction('police', 5000, 'deposit', 'Test')
+if success then
+    print('Transaktion tilføjet med succes')
+else
+    print('Fejl ved tilføjelse af transaktion')
+end</code>
+                </div>
+
+                <h3>Performance Overvejelser</h3>
+                <ul>
+                    <li>Brug passende grænser når du henter store datasæt</li>
+                    <li>Cache ofte tilgået data når det er muligt</li>
+                    <li>Overvej at bruge async mønstre til databaseoperationer</li>
+                    <li>Overvåg Discord webhook rate limits</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        const sections = document.querySelectorAll('.section');
+        
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in navigation
+        const observerOptions = {
+            rootMargin: '-20% 0px -80% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    const navLink = document.querySelector(`a[href="#${id}"]`);
+                    
+                    // Remove active class from all links
+                    document.querySelectorAll('.sidebar a').forEach(link => {
+                        link.style.background = '';
+                        link.style.color = '';
+                    });
+                    
+                    // Add active class to current link
+                    if (navLink) {
+                        navLink.style.background = '#667eea';
+                        navLink.style.color = 'white';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
