@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaki Boss Menu - Exports Dokumentation</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zaki Boss Menu - Exports Dokumentation</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -337,118 +338,151 @@
 .content {
     width: 100%;
 }
+
+body.dark-mode {
+    background: #0f172a;
+    color: #f8fafc;
+}
+body.dark-mode .header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: #f8fafc;
+}
+body.dark-mode .sidebar,
+body.dark-mode .content,
+body.dark-mode .function-block,
+body.dark-mode .example-block,
+body.dark-mode .warning,
+body.dark-mode .info {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .sidebar a {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .sidebar a:hover {
+    background: #334155 !important;
+    color: #60a5fa !important;
+}
+body.dark-mode .params-table,
+body.dark-mode .params-table th,
+body.dark-mode .params-table td {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+body.dark-mode .code-block {
+    background: #0f172a !important;
+}
+body.dark-mode .back-to-top {
+    background: #1e40af !important;
+}
+body.dark-mode .highlight {
+    background: #fde68a !important;
+    color: #1e293b !important;
+}
 </style>
 </head>
-<body>
-    <header class="header">
-        <div class="container">
-            <h1><i class="fas fa-code"></i> Zaki Dev</h1>
-            <p>discord.gg/5CRTp6sz62</p>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <nav class="sidebar">
-            <input type="text" class="search-box" placeholder="Søg i dokumentation..." id="searchBox">
-            <h3><i class="fas fa-list"></i> Indholdsfortegnelse</h3>
-            <ul id="tableOfContents">
-                <li><a href="#overview">Oversigt</a></li>
-                <li><a href="#transactions">Transaktioner</a></li>
-                <li><a href="#employees">Medarbejderstyring</a></li>
-                <li><a href="#billing">Faktureringssystem</a></li>
-                <li><a href="#budget">Budgetstyring</a></li>
-                <li><a href="#analytics">Analytics</a></li>
-                <li><a href="#settings">Indstillingsstyring</a></li>
-                <li><a href="#discord">Discord Integration</a></li>
-                <li><a href="#zones">Zone Styring</a></li>
-                <li><a href="#metrics">Medarbejder Metrics</a></li>
-                <li><a href="#reports">Rapport Generering</a></li>
-                <li><a href="#helpers">Hjælpefunktioner</a></li>
-                <li><a href="#examples">Brug Eksempler</a></li>
-                <li><a href="#error-handling">Fejlhåndtering</a></li>
-            </ul>
-        </nav>
-
-        <main class="content">
-            <section id="overview" class="section">
-                <h2>Oversigt</h2>
-                <p>Nem og overskuelig dokumentation / tutorials / snippets til brug af Zaki Bossmenuen!</p>
-                
-                <div class="info">
-                    <h5><i class="fas fa-info-circle"></i> Vigtig Information</h5>
-                    <p>Alle exports er designet til at arbejde med bossmenuen on-the-go og kræver korrekt opsætning af virksomheder (societies) på din server. Heldigivis er der allerede sørget for at jobs er oprettet i din database automatisk.</p>
-                </div>
-            </section>
-
-            <section id="transactions" class="section">
-                <h2><i class="fas fa-exchange-alt"></i> Transaktioner</h2>
-                
-                <div class="function-block">
-                    <div class="function-title">addTransaction</div>
-                    <div class="function-description">Tilføjer en transaktion til en virksomheds transaktionshistorik.</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:addTransaction(society, amount, type, note, source, target, category, description)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma (f.eks. 'police', 'ambulance')</td>
-                            </tr>
-                            <tr>
-                                <td><code>amount</code></td>
-                                <td><span class="badge">number</span></td>
-                                <td>Transaktionsbeløb (positivt for indkomst, negativt for udgifter)</td>
-                            </tr>
-                            <tr>
-                                <td><code>type</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Transaktionstype ('deposit', 'withdraw', 'bonus', osv.)</td>
-                            </tr>
-                            <tr>
-                                <td><code>note</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Kort transaktionsnotat</td>
-                            </tr>
-                            <tr>
-                                <td><code>source</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Kilde identifier (valgfri)</td>
-                            </tr>
-                            <tr>
-                                <td><code>target</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Target identifier (valgfri)</td>
-                            </tr>
-                            <tr>
-                                <td><code>category</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Transaktionskategori (valgfri)</td>
-                            </tr>
-                            <tr>
-                                <td><code>description</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Detaljeret beskrivelse (valgfri)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">boolean</span> - Success status</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Tilføj penge fra narkosag til politiet
+<body class="dark-mode">
+<header class="header"><button id="toggleTheme" style="position:absolute; top:1rem; right:1rem; padding:0.5rem 1rem; border:none; border-radius:5px; background:#333; color:#fff; cursor:pointer; z-index:9999;">Skift Tema</button>
+<div class="container">
+<h1><i class="fas fa-code"></i> Zaki Dev</h1>
+<p>discord.gg/5CRTp6sz62</p>
+</div>
+</header>
+<div class="main-content">
+<nav class="sidebar">
+<input class="search-box" id="searchBox" placeholder="Søg i dokumentation..." type="text"/>
+<h3><i class="fas fa-list"></i> Indholdsfortegnelse</h3>
+<ul id="tableOfContents">
+<li><a href="#overview">Oversigt</a></li>
+<li><a href="#transactions">Transaktioner</a></li>
+<li><a href="#employees">Medarbejderstyring</a></li>
+<li><a href="#billing">Faktureringssystem</a></li>
+<li><a href="#budget">Budgetstyring</a></li>
+<li><a href="#analytics">Analytics</a></li>
+<li><a href="#settings">Indstillingsstyring</a></li>
+<li><a href="#discord">Discord Integration</a></li>
+<li><a href="#zones">Zone Styring</a></li>
+<li><a href="#metrics">Medarbejder Metrics</a></li>
+<li><a href="#reports">Rapport Generering</a></li>
+<li><a href="#helpers">Hjælpefunktioner</a></li>
+<li><a href="#examples">Brug Eksempler</a></li>
+<li><a href="#error-handling">Fejlhåndtering</a></li>
+</ul>
+</nav>
+<main class="content">
+<section class="section" id="overview">
+<h2>Oversigt</h2>
+<p>Nem og overskuelig dokumentation / tutorials / snippets til brug af Zaki Bossmenuen!</p>
+<div class="info">
+<h5><i class="fas fa-info-circle"></i> Vigtig Information</h5>
+<p>Alle exports er designet til at arbejde med bossmenuen on-the-go og kræver korrekt opsætning af virksomheder (societies) på din server. Heldigivis er der allerede sørget for at jobs er oprettet i din database automatisk.</p>
+</div>
+</section>
+<section class="section" id="transactions">
+<h2><i class="fas fa-exchange-alt"></i> Transaktioner</h2>
+<div class="function-block">
+<div class="function-title">addTransaction</div>
+<div class="function-description">Tilføjer en transaktion til en virksomheds transaktionshistorik.</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:addTransaction(society, amount, type, note, source, target, category, description)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma (f.eks. 'police', 'ambulance')</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><span class="badge">number</span></td>
+<td>Transaktionsbeløb (positivt for indkomst, negativt for udgifter)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><span class="badge">string</span></td>
+<td>Transaktionstype ('deposit', 'withdraw', 'bonus', osv.)</td>
+</tr>
+<tr>
+<td><code>note</code></td>
+<td><span class="badge">string</span></td>
+<td>Kort transaktionsnotat</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Kilde identifier (valgfri)</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Target identifier (valgfri)</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Transaktionskategori (valgfri)</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Detaljeret beskrivelse (valgfri)</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">boolean</span> - Success status</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Tilføj penge fra narkosag til politiet
 -- Når betjenten lige har bustet en narco og pengene skal ind i kassen
 local success = exports['zaki-bossmenu']:addTransaction(
     'police',                     -- Hvem får pengene? Politiet
@@ -460,50 +494,45 @@ local success = exports['zaki-bossmenu']:addTransaction(
     'Operationer',                -- Kategori 
     'Penge beslaglagt fra narkosag' -- Lidt mere juicy detaljer
 )</code></pre></div>
-                    </div>
-                </div>
-
-                <div class="function-block">
-                    <div class="function-title">getTransactions</div>
-                    <div class="function-description">Henter transaktionshistorik for en virksomhed.</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:getTransactions(society, limit, category)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma</td>
-                            </tr>
-                            <tr>
-                                <td><code>limit</code></td>
-                                <td><span class="badge optional">number</span></td>
-                                <td>Maksimalt antal transaktioner (standard: 50)</td>
-                            </tr>
-                            <tr>
-                                <td><code>category</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Filtrer efter kategori</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">table</span> - Array af transaktionsobjekter</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Hent de sidste 20 operationstransaktioner for politiet
+</div>
+</div>
+<div class="function-block">
+<div class="function-title">getTransactions</div>
+<div class="function-description">Henter transaktionshistorik for en virksomhed.</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:getTransactions(society, limit, category)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><span class="badge optional">number</span></td>
+<td>Maksimalt antal transaktioner (standard: 50)</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Filtrer efter kategori</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">table</span> - Array af transaktionsobjekter</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Hent de sidste 20 operationstransaktioner for politiet
 -- Henter de 20 nyeste transaktioner for politiet
 
 local transactions = exports['zaki-bossmenu']:getTransactions(
@@ -514,130 +543,114 @@ local transactions = exports['zaki-bossmenu']:getTransactions(
 for _, trans in pairs(transactions) do
     print(trans.note .. ': ' .. trans.amount .. ' kr')
 end</code></pre></div>
-                    </div>
-                </div>
-
-                <div class="function-block">
-                    <div class="function-title">getSocietyBalance</div>
-                    <div class="function-description">Får den nuværende saldo for en virksomhed.</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:getSocietyBalance(society)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">number</span> - Nuværende saldo</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Check saldo for et job
+</div>
+</div>
+<div class="function-block">
+<div class="function-title">getSocietyBalance</div>
+<div class="function-description">Får den nuværende saldo for en virksomhed.</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:getSocietyBalance(society)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">number</span> - Nuværende saldo</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Check saldo for et job
 -- Vi checker lige hvor mange skejs politiet har på kontoen
 local balance = exports['zaki-bossmenu']:getSocietyBalance('police')
 print('Politiet har ' .. balance .. ' kr på kontoen')</code></pre></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="employees" class="section">
-                <h2><i class="fas fa-users"></i> Medarbejderstyring</h2>
-                
-                <div class="function-block">
-                    <div class="function-title">getSocietyEmployees</div>
-                    <div class="function-description">Får alle medarbejdere i en virksomhed (online og offline).</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:getSocietyEmployees(society)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">table</span> - Array af medarbejderobjekter</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Få alle politimedarbejdere
+</div>
+</div>
+</section>
+<section class="section" id="employees">
+<h2><i class="fas fa-users"></i> Medarbejderstyring</h2>
+<div class="function-block">
+<div class="function-title">getSocietyEmployees</div>
+<div class="function-description">Får alle medarbejdere i en virksomhed (online og offline).</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:getSocietyEmployees(society)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">table</span> - Array af medarbejderobjekter</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Få alle politimedarbejdere
 local employees = exports['zaki-bossmenu']:getSocietyEmployees('police')
 for _, employee in pairs(employees) do
     local status = employee.online and 'Online' or 'Offline'
     print(employee.name .. ' - ' .. employee.job.grade_label .. ' (' .. status .. ')')
 end</code></pre></div>
-                    </div>
-                </div>
-
-                <div class="function-block">
-                    <div class="function-title">hirePlayerToSociety</div>
-                    <div class="function-description">Ansætter en spiller i en virksomhed.</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:hirePlayerToSociety(playerId, society, grade)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>playerId</code></td>
-                                <td><span class="badge">number</span></td>
-                                <td>Spiller server ID</td>
-                            </tr>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma</td>
-                            </tr>
-                            <tr>
-                                <td><code>grade</code></td>
-                                <td><span class="badge optional">number</span></td>
-                                <td>Startgrad (standard: 0)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">boolean</span> - Success status</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Vi ansætter en frisk rekrut til betjentstyrken
+</div>
+</div>
+<div class="function-block">
+<div class="function-title">hirePlayerToSociety</div>
+<div class="function-description">Ansætter en spiller i en virksomhed.</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:hirePlayerToSociety(playerId, society, grade)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>playerId</code></td>
+<td><span class="badge">number</span></td>
+<td>Spiller server ID</td>
+</tr>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td><span class="badge optional">number</span></td>
+<td>Startgrad (standard: 0)</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">boolean</span> - Success status</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Vi ansætter en frisk rekrut til betjentstyrken
 local success = exports['zaki-bossmenu']:hirePlayerToSociety(
     1,          -- Spiller ID
     'police',   -- Jobbet
@@ -646,64 +659,58 @@ local success = exports['zaki-bossmenu']:hirePlayerToSociety(
 if success then
     print('Spiller ansat som politielev!')
 end</code></pre></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="billing" class="section">
-                <h2><i class="fas fa-file-invoice-dollar"></i> Faktureringssystem</h2>
-                
-                <div class="function-block">
-                    <div class="function-title">createBillForPlayer</div>
-                    <div class="function-description">Opretter en regning til en spiller fra en virksomhed.</div>
-                    
-                    <h4>Syntax:</h4>
-                    <div class="code-block"><pre><code>exports['zaki-bossmenu']:createBillForPlayer(society, playerIdentifier, label, amount, dueDate)</code></pre></div>
-
-                    <h4>Parametre:</h4>
-                    <table class="params-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Beskrivelse</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>society</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Firma</td>
-                            </tr>
-                            <tr>
-                                <td><code>playerIdentifier</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Spiller identifier</td>
-                            </tr>
-                            <tr>
-                                <td><code>label</code></td>
-                                <td><span class="badge">string</span></td>
-                                <td>Regningsbeskrivelse</td>
-                            </tr>
-                            <tr>
-                                <td><code>amount</code></td>
-                                <td><span class="badge">number</span></td>
-                                <td>Regningsbeløb</td>
-                            </tr>
-                            <tr>
-                                <td><code>dueDate</code></td>
-                                <td><span class="badge optional">string</span></td>
-                                <td>Forfaldsdato (YYYY-MM-DD format)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Returnerer:</h4>
-                    <p><span class="badge returns">boolean</span> - Success status</p>
-
-                    <div class="example-block">
-                        <h5>Eksempel:</h5>
-                        <div class="code-block"><pre><code>-- Opret fartbøde
+</div>
+</div>
+</section>
+<section class="section" id="billing">
+<h2><i class="fas fa-file-invoice-dollar"></i> Faktureringssystem</h2>
+<div class="function-block">
+<div class="function-title">createBillForPlayer</div>
+<div class="function-description">Opretter en regning til en spiller fra en virksomhed.</div>
+<h4>Syntax:</h4>
+<div class="code-block"><pre><code>exports['zaki-bossmenu']:createBillForPlayer(society, playerIdentifier, label, amount, dueDate)</code></pre></div>
+<h4>Parametre:</h4>
+<table class="params-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>society</code></td>
+<td><span class="badge">string</span></td>
+<td>Firma</td>
+</tr>
+<tr>
+<td><code>playerIdentifier</code></td>
+<td><span class="badge">string</span></td>
+<td>Spiller identifier</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><span class="badge">string</span></td>
+<td>Regningsbeskrivelse</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><span class="badge">number</span></td>
+<td>Regningsbeløb</td>
+</tr>
+<tr>
+<td><code>dueDate</code></td>
+<td><span class="badge optional">string</span></td>
+<td>Forfaldsdato (YYYY-MM-DD format)</td>
+</tr>
+</tbody>
+</table>
+<h4>Returnerer:</h4>
+<p><span class="badge returns">boolean</span> - Success status</p>
+<div class="example-block">
+<h5>Eksempel:</h5>
+<div class="code-block"><pre><code>-- Opret fartbøde
 -- Når nogen kører 120 i en 50-zone, ja, så kommer der bøde
 local success = exports['zaki-bossmenu']:createBillForPlayer(
     'police',                         -- Afsender 
@@ -715,15 +722,13 @@ local success = exports['zaki-bossmenu']:createBillForPlayer(
 if success then
     print('Fartbøde oprettet!')
 end</code></pre></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="examples" class="section">
-                <h2><i class="fas fa-code"></i> Eksempler på implementering</h2>
-                
-                <h3>Eksempel 1: Beslaglæggelse Integration</h3>
-                <div class="code-block"><pre><code>RegisterServerEvent('drugs:bustComplete')
+</div>
+</div>
+</section>
+<section class="section" id="examples">
+<h2><i class="fas fa-code"></i> Eksempler på implementering</h2>
+<h3>Eksempel 1: Beslaglæggelse Integration</h3>
+<div class="code-block"><pre><code>RegisterServerEvent('drugs:bustComplete')
 AddEventHandler('drugs:bustComplete', function(amount, location)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
@@ -740,9 +745,8 @@ AddEventHandler('drugs:bustComplete', function(amount, location)
         exports['zaki-bossmenu']:addEmployeeMetric('police', xPlayer.identifier, 'drug_busts', 1, os.date('%Y-%m-%d'), os.date('%Y-%m-%d'), 'Narkobust gennemført på ' .. location)
     end
 end)</code></pre></div>
-
-                <h3>Eksempel 2: Mekaniker Job Integration</h3>
-                <div class="code-block"><pre><code>RegisterServerEvent('mechanic:repairComplete')
+<h3>Eksempel 2: Mekaniker Job Integration</h3>
+<div class="code-block"><pre><code>RegisterServerEvent('mechanic:repairComplete')
 AddEventHandler('mechanic:repairComplete', function(price, vehicleModel)
 
     local source = source
@@ -757,17 +761,14 @@ AddEventHandler('mechanic:repairComplete', function(price, vehicleModel)
 
     end
 end)</code></pre></div>
-            </section>
-
-            <section id="error-handling" class="section">
-                <h2><i class="fas fa-exclamation-triangle"></i> Fejlhåndtering</h2>
-                
-                <div class="warning">
-                    <h5><i class="fas fa-exclamation-triangle"></i> Vigtig Note</h5>
-                    <p>Alle exports har fejlhåndtering og vil returnere <code>false</code> eller tomme tabeller ved fejl. Tjek altid om exporten lykkedes <3 </p>
-                </div>
-
-                <div class="code-block"><pre><code>-- Husk altid at tjekke om tingene lykkes
+</section>
+<section class="section" id="error-handling">
+<h2><i class="fas fa-exclamation-triangle"></i> Fejlhåndtering</h2>
+<div class="warning">
+<h5><i class="fas fa-exclamation-triangle"></i> Vigtig Note</h5>
+<p>Alle exports har fejlhåndtering og vil returnere <code>false</code> eller tomme tabeller ved fejl. Tjek altid om exporten lykkedes &lt;3 </p>
+</div>
+<div class="code-block"><pre><code>-- Husk altid at tjekke om tingene lykkes
 local success = exports['zaki-bossmenu']:addTransaction(
     'police',
     5000,
@@ -779,19 +780,15 @@ if success then
 else
     print('Fejl ved tilføjelse af transaktion')
 end</code></pre></div>
-
-            
-            </section>
-        </main>
-    </div>
-
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <script>
+</section>
+</main>
+</div>
+<button class="back-to-top" id="backToTop">
+<i class="fas fa-arrow-up"></i>
+</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
         const backToTopButton = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
@@ -864,6 +861,13 @@ end</code></pre></div>
         sections.forEach(section => {
             observer.observe(section);
         });
-    </script>
+    
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggleTheme');
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+});
+</script>
 </body>
 </html>
